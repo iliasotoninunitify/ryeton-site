@@ -1,0 +1,13 @@
+# Contact form handler for ryeton.com. Sends each submission as an email through
+# Cloudflare Email Routing. The recipient address is a secret (TO_EMAIL), not in this file.
+name = "ryeton-contact"
+main = "src/index.js"
+compatibility_date = "2025-06-01"
+routes = [{ pattern = "forms.ryeton.com", custom_domain = true }]
+
+[[send_email]]
+name = "MAIL"
+
+[vars]
+FROM_EMAIL = "forms@ryeton.com"
+ALLOWED_ORIGIN = "https://ryeton.com"
