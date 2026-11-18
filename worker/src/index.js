@@ -1,5 +1,7 @@
 import { EmailMessage } from "cloudflare:email";
 
+const DEFAULTS = { FROM_EMAIL: "forms@ryeton.com", ALLOWED_ORIGIN: "https://ryeton.com" };
+
 const FIELDS = {
   kind: 20, name: 120, email: 160, phone: 40, firm: 160, size: 80, message: 3000,
 };
@@ -22,7 +24,8 @@ const cleanBody = (v, max) => String(v ?? "").replace(/\r\n/g, "\n").trim().slic
 const b64 = (s) => btoa(String.fromCharCode(...new TextEncoder().encode(s)));
 
 export default {
-  async fetch(request, env) {
+  async fetch(request, rawEnv) {
+    const env = { ...DEFAULTS, ...rawEnv };
     if (request.method === "OPTIONS") return new Response(null, { status: 204, headers: cors(env) });
     if (request.method !== "POST") return json(env, 405, { ok: false, error: "method" });
 
