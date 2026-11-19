@@ -93,7 +93,6 @@ section { padding: var(--s24) 0; }
 .top nav a:hover { color: var(--on-dark); text-decoration: underline; }
 .top.light .mark, .top.light nav a { color: var(--ink); }
 .top nav a.btn, .top.light nav a.btn { color: var(--on-accent); text-decoration: none; }
-@media (max-width: 860px) { .top nav a.hide-m { display: none; } }
 
 .btn { white-space: nowrap; display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 0 var(--s6); border-radius: 999px; font-weight: 600; font-size: 16px; text-decoration: none; border: 1.5px solid transparent; cursor: pointer; font-family: var(--font-body); transition: background-color .15s ease, color .15s ease, border-color .15s ease; }
 .btn-rye { background: var(--rye-btn); color: var(--on-accent); }
@@ -299,3 +298,6 @@ footer .legal { grid-column: 1 / -1; margin: 0; padding-top: var(--s6); border-t
 .top nav a:not(.btn) { display: inline-flex; align-items: center; min-height: 44px; }
 .top .btn { min-height: 44px; }
 .mark { min-height: 44px; }
+/* must come after the tap-target rule above, or the links show on phones and push the page wide */
+@media (max-width: 860px) { .top nav a.hide-m { display: none; } }
+@media (max-width: 380px) { .top .wrap { gap: var(--s3); } .top .btn { padding: 0 var(--s4); } .mark { font-size: 22px; } }
